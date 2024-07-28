@@ -95,3 +95,5 @@ This is one way to run your app — you can also run it directly from within And
 ### For Web
 
 You can run the app on web browser after starting metro by simply entering http://localhost:8081 as URL.
+
+You can check demo video of the app for both ios and web [here](https://drive.google.com/file/d/1Ww7g_5vdhUhPunselFraggnitihE6Wzv/view?usp=sharing)!
