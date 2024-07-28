@@ -189,12 +189,12 @@ export default function HomeScreen() {
     );
   };
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: theme === 'light' ? Colors.light.background : Colors.dark.background}}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
       >
-        <ThemedView style={{ flex: 1 }}>
+        <ThemedView style={{ flex: 1, height: '100%' }}>
           <ThemedView style={styles.titleContainer}>
             <ThemedView
               style={{

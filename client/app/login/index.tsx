@@ -1,6 +1,8 @@
 import React from "react";
 import {
   ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -28,59 +30,64 @@ export default function Login() {
     theme,
   } = useLoginHook();
   return (
-    <SafeAreaView style={styles.container}>
-      <ThemedView style={{ flex: 1 }}>
-        <ThemedView style={styles.topIconRowContainer}>
-          <ThemedView style={styles.topLeftCircle} />
-          <ThemedView style={styles.topRightCircle} />
-        </ThemedView>
-        <Text
-          style={[
-            styles.loginHeader,
-            { color: theme === "light" ? Colors.light.text : Colors.dark.text },
-          ]}
-        >
-          Login
-        </Text>
-        <Input
-          value={credentials.username}
-          onChangeText={setUsername}
-          placeholder={"Username"}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          inputRef={usernameRef}
-          customStyle={{ marginHorizontal: 35 }}
-        />
-        <ThemedView style={styles.separator} />
-        <Input
-          value={credentials.password}
-          onChangeText={setPassword}
-          placeholder={"Password"}
-          keyboardType={"default"}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          inputRef={passwordRef}
-          hidePassword={hidePassword}
-          onShowHidePassword={showHidePassword}
-          customStyle={{ marginHorizontal: 35 }}
-        />
-        <TouchableOpacity style={styles.loginButton} onPress={onLogin}>
-          {isButtonLoading ? (
-            <ActivityIndicator size={"large"} />
-          ) : (
-            <Text style={styles.loginButtonText}>Login</Text>
-          )}
-        </TouchableOpacity>
-        <ThemedView style={styles.signUpContainer}>
-          <Text style={styles.dontHaveAccountText}>
-            Don't have an account?{" "}
+    <SafeAreaView style={[styles.container, {backgroundColor: theme === 'light' ? Colors.light.background : Colors.dark.background}]}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={{ flex: 1 }}
+      >
+        <ThemedView style={{ flex: 1 }}>
+          <ThemedView style={styles.topIconRowContainer}>
+            <ThemedView style={styles.topLeftCircle} />
+            <ThemedView style={styles.topRightCircle} />
+          </ThemedView>
+          <Text
+            style={[
+              styles.loginHeader,
+              { color: theme === "light" ? Colors.light.text : Colors.dark.text },
+            ]}
+          >
+            Login
           </Text>
-          <Text style={styles.signUpText} onPress={navigateToSignup}>
-            {" "}
-            Sign up!
-          </Text>
+          <Input
+            value={credentials.username}
+            onChangeText={setUsername}
+            placeholder={"Username"}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            inputRef={usernameRef}
+            customStyle={{ marginHorizontal: 35 }}
+          />
+          <ThemedView style={styles.separator} />
+          <Input
+            value={credentials.password}
+            onChangeText={setPassword}
+            placeholder={"Password"}
+            keyboardType={"default"}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            inputRef={passwordRef}
+            hidePassword={hidePassword}
+            onShowHidePassword={showHidePassword}
+            customStyle={{ marginHorizontal: 35 }}
+          />
+          <TouchableOpacity style={styles.loginButton} onPress={onLogin}>
+            {isButtonLoading ? (
+              <ActivityIndicator size={"large"} />
+            ) : (
+              <Text style={styles.loginButtonText}>Login</Text>
+            )}
+          </TouchableOpacity>
+          <ThemedView style={styles.signUpContainer}>
+            <Text style={styles.dontHaveAccountText}>
+              Don't have an account?{" "}
+            </Text>
+            <Text style={styles.signUpText} onPress={navigateToSignup}>
+              {" "}
+              Sign up!
+            </Text>
+          </ThemedView>
         </ThemedView>
-      </ThemedView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
